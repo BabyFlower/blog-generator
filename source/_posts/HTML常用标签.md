@@ -4,9 +4,9 @@ date: 2018-03-27 12:03:56
 tags:
 ---
 ## iframe标签
->     <iframe src="http://qq.com" frameborder="0"></iframe>
+>      <iframe src="http://qq.com" frameborder="0"></iframe>
 嵌入网页，frameboder="0",去除嵌入边框。
->     <iframe name=baidu src="#" frameborder="0"></iframe>
+>      <iframe name=baidu src="#" frameborder="0"></iframe>
 >      <a href="http://baidu.com" target=baidu>baidu</a>
 通过name跟target，实现点击链接，将网页嵌入iframe中。
 
