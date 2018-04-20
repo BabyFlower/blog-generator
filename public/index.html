@@ -181,7 +181,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -191,7 +191,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -257,7 +257,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-20T13:11:45+08:00">
                 2018-04-20
@@ -299,7 +299,35 @@
       
         
           
-            
+            <h2 id="2XX-成功"><a href="#2XX-成功" class="headerlink" title="2XX 成功"></a>2XX 成功</h2><p><strong>这一类型的状态码，代表请求已成功被服务器接收、理解、并接受。</strong></p>
+<ul>
+<li>200 OK 请求已成功，请求所希望的响应头或数据体将随此响应返回。</li>
+<li>201 Created 请求已经被实现，而且有一个新的资源已经依据请求的需要而创建，且其URI已经随Location头信息返回。假如需要的资源无法及时创建的话，应当返回’202 Accepted’。</li>
+<li>202 Accepted 服务器已接受请求，但尚未处理。最终该请求可能会也可能不会被执行，并且可能在处理发生时被禁止。</li>
+</ul>
+<h2 id="3xx-重定向"><a href="#3xx-重定向" class="headerlink" title="3xx 重定向"></a>3xx 重定向</h2><p><strong>这类状态码代表需要客户端采取进一步的操作才能完成请求。通常，这些状态码用来重定向，后续的请求地址（重定向目标）在本次响应的Location域中指明。</strong></p>
+<ul>
+<li>301 Moved Permanently 被请求的资源已永久移动到新位置，并且将来任何对此资源的引用都应该使用本响应返回的若干个URI之一。</li>
+<li>302 Found 要求客户端执行临时重定向。由于这样的重定向是临时的，客户端应当继续向原有地址发送以后的请求。只有在Cache-Control或Expires中进行了指定的情况下，这个响应才是可缓存的。</li>
+</ul>
+<h2 id="4xx-客户端错误"><a href="#4xx-客户端错误" class="headerlink" title="4xx 客户端错误"></a>4xx 客户端错误</h2><p><strong>这类的状态码代表了客户端看起来可能发生了错误，妨碍了服务器的处理。</strong></p>
+<ul>
+<li>403 Forbidden 服务器已经理解请求，但是拒绝执行它。</li>
+<li>404 Not Found 请求失败，请求所希望得到的资源未被在服务器上发现，但允许用户的后续请求。</li>
+</ul>
+<h2 id="5xx-服务器错误"><a href="#5xx-服务器错误" class="headerlink" title="5xx 服务器错误"></a>5xx 服务器错误</h2><p><strong>表示服务器无法完成明显有效的请求。</strong></p>
+<ul>
+<li>500 Internal Server Error 通用错误消息，服务器遇到了一个未曾预料的状况，导致了它无法完成对请求的处理。没有给出具体错误信息。</li>
+<li>502 Bad Gateway 作为网关或者代理工作的服务器尝试执行请求时，从上游服务器接收到无效的响应。</li>
+</ul>
+<h2 id="口语版"><a href="#口语版" class="headerlink" title="口语版"></a>口语版</h2><ol>
+<li>1xx 不常用</li>
+<li>2xx 表示成功</li>
+<li>3xx 表示滚吧</li>
+<li>4xx 表示你丫错了</li>
+<li>5xx 表示好吧，我错了</li>
+</ol>
+
           
         
       
@@ -376,7 +404,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-27T12:03:56+08:00">
                 2018-03-27
@@ -420,8 +448,9 @@
           
             <h2 id="iframe标签"><a href="#iframe标签" class="headerlink" title="iframe标签"></a>iframe标签</h2><blockquote>
 <pre><code>&lt;iframe src=&quot;http://qq.com&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
-</code></pre><p>嵌入网页，frameboder=”0”,去除嵌入边框。<br>     <iframe name="baidu" src="#" frameborder="0"></iframe><br>     <a href="http://baidu.com" target="baidu">baidu</a><br>通过name跟target，实现点击链接，将网页嵌入iframe中。</p>
+</code></pre><p>嵌入网页，frameboder=”0”,去除嵌入边框。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe name=baidu src=&quot;#&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;a href=&quot;http://baidu.com&quot; target=baidu&gt;baidu&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
+<p>通过name跟target，实现点击链接，将网页嵌入iframe中。</p>
 <p><em>通过height和width设置宽高。</em></p>
 <h2 id="a标签"><a href="#a标签" class="headerlink" title="a标签"></a>a标签</h2><blockquote>
 <pre><code>&lt;a href=&quot;http://baidu.com&quot; target=&quot;_blank&quot; &gt;baidu&lt;/a&gt;
@@ -558,7 +587,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-23T19:57:22+08:00">
                 2018-03-23
@@ -795,7 +824,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T12:26:00+08:00">
                 2018-03-21
@@ -937,7 +966,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T16:34:25+08:00">
                 2018-03-20
@@ -1057,7 +1086,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T16:21:55+08:00">
                 2018-03-20
@@ -1190,7 +1219,7 @@
                 <a href="/archives/">
               
                   <span class="site-state-item-count">6</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -1240,7 +1269,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
