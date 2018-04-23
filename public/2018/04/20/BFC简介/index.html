@@ -79,13 +79,16 @@
 
 
 
+<meta name="description" content="BFC(block formatting context,块格式化上下文)针对div，1.它没有定义，2.它只有特性/功能 功能1:爸爸管儿子(不叫清除浮动) display:inline block inline-block(非块盒的块容器) 浮动，绝对定位元素，非块盒的块容器，overflow不为visible    display:table-cell/table-caption displ">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BFC简介">
 <meta property="og:url" content="http://yoursite.com/2018/04/20/BFC简介/index.html">
 <meta property="og:site_name" content="傅里叶子">
-<meta property="og:updated_time" content="2018-04-20T07:28:21.281Z">
+<meta property="og:description" content="BFC(block formatting context,块格式化上下文)针对div，1.它没有定义，2.它只有特性/功能 功能1:爸爸管儿子(不叫清除浮动) display:inline block inline-block(非块盒的块容器) 浮动，绝对定位元素，非块盒的块容器，overflow不为visible    display:table-cell/table-caption displ">
+<meta property="og:updated_time" content="2018-04-23T05:07:50.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BFC简介">
+<meta name="twitter:description" content="BFC(block formatting context,块格式化上下文)针对div，1.它没有定义，2.它只有特性/功能 功能1:爸爸管儿子(不叫清除浮动) display:inline block inline-block(非块盒的块容器) 浮动，绝对定位元素，非块盒的块容器，overflow不为visible    display:table-cell/table-caption displ">
 
 
 
@@ -181,7 +184,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -191,7 +194,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -255,7 +258,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-20T15:28:21+08:00">
                 2018-04-20
@@ -295,7 +298,15 @@
       
 
       
-        
+        <h2 id="BFC-block-formatting-context-块格式化上下文"><a href="#BFC-block-formatting-context-块格式化上下文" class="headerlink" title="BFC(block formatting context,块格式化上下文)"></a>BFC(block formatting context,块格式化上下文)</h2><p><em>针对div，1.它没有定义，2.它只有特性/功能</em></p>
+<h3 id="功能1-爸爸管儿子-不叫清除浮动"><a href="#功能1-爸爸管儿子-不叫清除浮动" class="headerlink" title="功能1:爸爸管儿子(不叫清除浮动)"></a>功能1:爸爸管儿子(不叫清除浮动)</h3><blockquote>
+<pre><code>display:inline block inline-block(非块盒的块容器)
+</code></pre><p>浮动，绝对定位元素，非块盒的块容器，overflow不为visible<br>    display:table-cell/table-caption display:flow-root,则该元素为BFC<br>不管内容如何，BFC总会包住儿子，也可用border边框实现。<br>    display:flow-root 让当前元素触发BFC</p>
+</blockquote>
+<h3 id="功能2"><a href="#功能2" class="headerlink" title="功能2"></a>功能2</h3><p>在竖直方向上，同一BFC中，两个块级元素的margin会合并(取最大)</p>
+<h3 id="功能3-爸爸管儿子，儿子管孙子，则爸爸不管儿子"><a href="#功能3-爸爸管儿子，儿子管孙子，则爸爸不管儿子" class="headerlink" title="功能3:爸爸管儿子，儿子管孙子，则爸爸不管儿子"></a>功能3:爸爸管儿子，儿子管孙子，则爸爸不管儿子</h3><p>在一个BFC中的内容，被另一个BFC包括，则不管该该部分内容</p>
+<h3 id="功能4-BFC包住内容，可不发生重叠"><a href="#功能4-BFC包住内容，可不发生重叠" class="headerlink" title="功能4:BFC包住内容，可不发生重叠"></a>功能4:BFC包住内容，可不发生重叠</h3><p>让两个相邻的元素，界限分明 </p>
+
       
     </div>
     
@@ -383,8 +394,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -399,8 +419,8 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -427,6 +447,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#BFC-block-formatting-context-块格式化上下文"><span class="nav-number">1.</span> <span class="nav-text">BFC(block formatting context,块格式化上下文)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#功能1-爸爸管儿子-不叫清除浮动"><span class="nav-number">1.1.</span> <span class="nav-text">功能1:爸爸管儿子(不叫清除浮动)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能2"><span class="nav-number">1.2.</span> <span class="nav-text">功能2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能3-爸爸管儿子，儿子管孙子，则爸爸不管儿子"><span class="nav-number">1.3.</span> <span class="nav-text">功能3:爸爸管儿子，儿子管孙子，则爸爸不管儿子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#功能4-BFC包住内容，可不发生重叠"><span class="nav-number">1.4.</span> <span class="nav-text">功能4:BFC包住内容，可不发生重叠</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -450,7 +486,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
