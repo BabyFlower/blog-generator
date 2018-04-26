@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="1234567891011121314151617181920212223window.jQuery = function(node)&amp;#123;    let elements = document.getElementsByTagName(node);    let elementSet = &amp;#123;        node : elements    &amp;#125;    elementS">
+<meta name="description" content="1. flex布局与方向无关2. 空间自动分配，自动对齐3. 适用于简单的线性布局，更复杂的布局交给grid布局  flex container(弹性容器)包含弹性项目的父元素，通过设置display 属性的值为 flex 或 inline-flex 来定义弹性容器 属性 flex-direction: 确定主轴，row从左到右(默认)，row-reverse从右到左，column从上到下，col">
 <meta property="og:type" content="article">
-<meta property="og:title" content="类jQuery方法">
-<meta property="og:url" content="http://yoursite.com/2018/04/26/类jQuery方法/index.html">
+<meta property="og:title" content="Flex-弹性布局">
+<meta property="og:url" content="http://yoursite.com/2018/04/26/Flex-弹性布局/index.html">
 <meta property="og:site_name" content="傅里叶子">
-<meta property="og:description" content="1234567891011121314151617181920212223window.jQuery = function(node)&amp;#123;    let elements = document.getElementsByTagName(node);    let elementSet = &amp;#123;        node : elements    &amp;#125;    elementS">
-<meta property="og:updated_time" content="2018-04-26T14:28:54.407Z">
+<meta property="og:description" content="1. flex布局与方向无关2. 空间自动分配，自动对齐3. 适用于简单的线性布局，更复杂的布局交给grid布局  flex container(弹性容器)包含弹性项目的父元素，通过设置display 属性的值为 flex 或 inline-flex 来定义弹性容器 属性 flex-direction: 确定主轴，row从左到右(默认)，row-reverse从右到左，column从上到下，col">
+<meta property="og:image" content="https://github.com/BabyFlower/blog-generator/blob/master/source/_posts/flexbox.png">
+<meta property="og:updated_time" content="2018-04-26T14:37:07.466Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="类jQuery方法">
-<meta name="twitter:description" content="1234567891011121314151617181920212223window.jQuery = function(node)&amp;#123;    let elements = document.getElementsByTagName(node);    let elementSet = &amp;#123;        node : elements    &amp;#125;    elementS">
+<meta name="twitter:title" content="Flex-弹性布局">
+<meta name="twitter:description" content="1. flex布局与方向无关2. 空间自动分配，自动对齐3. 适用于简单的线性布局，更复杂的布局交给grid布局  flex container(弹性容器)包含弹性项目的父元素，通过设置display 属性的值为 flex 或 inline-flex 来定义弹性容器 属性 flex-direction: 确定主轴，row从左到右(默认)，row-reverse从右到左，column从上到下，col">
+<meta name="twitter:image" content="https://github.com/BabyFlower/blog-generator/blob/master/source/_posts/flexbox.png">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/26/类jQuery方法/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/26/Flex-弹性布局/"/>
 
 
 
 
 
-  <title>类jQuery方法 | 傅里叶子</title>
+  <title>Flex-弹性布局 | 傅里叶子</title>
   
 
 
@@ -231,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/26/类jQuery方法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/26/Flex-弹性布局/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张">
@@ -248,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">类jQuery方法</h1>
+          <h1 class="post-title" itemprop="name headline">Flex-弹性布局</h1>
         
 
         <div class="post-meta">
@@ -260,7 +262,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T22:07:22+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T22:35:59+08:00">
                 2018-04-26
               </time>
             
@@ -298,11 +300,26 @@
       
 
       
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery = <span class="function"><span class="keyword">function</span>(<span class="params">node</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> elements = <span class="built_in">document</span>.getElementsByTagName(node);</span><br><span class="line">    <span class="keyword">let</span> elementSet = &#123;</span><br><span class="line">        node : elements</span><br><span class="line">    &#125;</span><br><span class="line">    elementSet.addClass  =  <span class="function"><span class="keyword">function</span>(<span class="params">classes</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>; i &lt; elements.length;i++)&#123;</span><br><span class="line">            elements[i].classList.add(classes);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    elementSet.textSet = <span class="function"><span class="keyword">function</span>(<span class="params">text</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">0</span>; i &lt; elements.length;i++)&#123;</span><br><span class="line">            elements[i].textContent = text;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> elementSet;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.$ = jQuery</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> $div = $(<span class="string">'div'</span>)</span><br><span class="line">$div.addClass(<span class="string">'red'</span>) <span class="comment">// 可将所有 div 的 class 添加一个 red</span></span><br><span class="line">$div.setText(<span class="string">'hi'</span>) <span class="comment">// 可将所有 div 的 textContent 变为 hi</span></span><br></pre></td></tr></table></figure>
-<ol>
-<li>定义一个构造函数jQuery，并返回具有各种属性和方法的对象。</li>
-<li>通过调用jQuery，能够实例化对象，执行相关的方法。</li>
-</ol>
+        <p><strong>1. flex布局与方向无关</strong><br><strong>2. 空间自动分配，自动对齐</strong><br><strong>3. 适用于简单的线性布局，更复杂的布局交给grid布局</strong></p>
+<p><img src="https://github.com/BabyFlower/blog-generator/blob/master/source/_posts/flexbox.png" alt=""></p>
+<h2 id="flex-container-弹性容器"><a href="#flex-container-弹性容器" class="headerlink" title="flex container(弹性容器)"></a>flex container(弹性容器)</h2><p><em>包含弹性项目的父元素，通过设置display 属性的值为 flex 或 inline-flex 来定义弹性容器</em></p>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><ul>
+<li><strong>flex-direction:</strong> 确定主轴，row从左到右(默认)，row-reverse从右到左，column从上到下，column-reverse从下到上</li>
+<li><strong>flex-wrap:</strong> 换行/列，nowrap(默认)，wrap</li>
+<li><strong>flex-flow:</strong> 上面两个的简写</li>
+<li><strong>justify-content:</strong> 主轴对齐方式，space-between，space-around,flex-start(往起点靠),flex-end(终点)，center</li>
+<li><strong>align-items:</strong> 测轴对齐方式，stretch(伸展为最高元素一样)，flex-start，flex-end,center</li>
+<li><strong>align-content:</strong> 多行/列内容对齐方式，baseline(文字对齐)，stretch(默认，平均分布)，space-between,space-around,flex-start,flex-end</li>
+</ul>
+<h2 id="flex-item"><a href="#flex-item" class="headerlink" title="flex-item"></a>flex-item</h2><p><em>弹性容器的每个子元素都称为弹性项目。弹性容器直接包含的文本将被包覆成匿名弹性单元</em></p>
+<h3 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h3><ul>
+<li><strong>flex-grow:</strong> 增长比例，分配多余空间(默认为0，不放大)</li>
+<li><strong>flex-shrink:</strong> 收缩比例，默认为1，设置为0时，不参与收缩</li>
+<li><strong>flex-basis:</strong> 默认大小auto，默认的宽度由内容决定</li>
+<li><strong>flex:</strong> 上面三个的缩写，auto(1 1 auto),none(0 0 auto)</li>
+<li><strong>order:</strong> 排列顺序</li>
+<li><strong>align-self:</strong> 自身对齐方式(高度不能写死)，flex-end，center，flex-start</li>
+</ul>
 
       
     </div>
@@ -327,8 +344,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/23/CSS积累-0-1/" rel="next" title="CSS积累_0.1">
-                <i class="fa fa-chevron-left"></i> CSS积累_0.1
+              <a href="/2018/04/26/flex布局/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
               </a>
             
           </div>
@@ -336,10 +353,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/26/flex布局/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -391,8 +404,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -434,6 +456,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#flex-container-弹性容器"><span class="nav-number">1.</span> <span class="nav-text">flex container(弹性容器)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#属性"><span class="nav-number">1.1.</span> <span class="nav-text">属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flex-item"><span class="nav-number">2.</span> <span class="nav-text">flex-item</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#属性-1"><span class="nav-number">2.1.</span> <span class="nav-text">属性</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
