@@ -8,7 +8,7 @@ tags:
 **2. 空间自动分配，自动对齐**
 **3. 适用于简单的线性布局，更复杂的布局交给grid布局**
 
-![](https://github.com/BabyFlower/blog-generator/blob/master/source/_posts/flexbox.png)
+![](/images/flexbox.png)
 
 ## flex container(弹性容器) 
 *包含弹性项目的父元素，通过设置display 属性的值为 flex 或 inline-flex 来定义弹性容器*

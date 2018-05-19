@@ -31,8 +31,8 @@ list-style:none;/*去除li标签的点样式*/
 ### li>a 高度不一致
 >     li>a{display:block}
 
-![默认](https://github.com/BabyFlower/blog-generator/blob/master/source/_posts/liaWoutDisBlock.png)
-![display:block](https://github.com/BabyFlower/blog-generator/blob/master/source/_posts/liaWithDisBlock.png)
+![默认](/images/liaWoutDisBlock.png)
+![display:block](/images/liaWithDisBlock.png)
 
 
 
