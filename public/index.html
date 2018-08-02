@@ -181,7 +181,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -191,7 +191,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -214,6 +214,136 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/02/Flex实战/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="傅里叶子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/02/Flex实战/" itemprop="url">Flex实战</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-02T21:36:54+08:00">
+                2018-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>之前写过Flex布局的相关属性介绍，但是都是文字表面，在实际运用中的flex布局的思路并没有。在一次面试中，遇到了实际问题，然后今天记录一下flex布局的思路。</p>
+<h2 id="如何用上flex"><a href="#如何用上flex" class="headerlink" title="如何用上flex"></a>如何用上flex</h2><p><strong>flex的重要概念：</strong> container 和 items <br><br>把所有需要布局的东西放在一个容器里面（可以想象成一块桌布container上摆着一些东西items）。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"parent"</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span>1111111<span class="tag">&lt;<span class="name">br</span>&gt;</span>1111111<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">  1111111<span class="tag">&lt;<span class="name">br</span>&gt;</span>1111111<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span> &gt;</span>2222<span class="tag">&lt;<span class="name">br</span>&gt;</span>2222<span class="tag">&lt;<span class="name">br</span>&gt;</span>2222<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span>33<span class="tag">&lt;<span class="name">br</span>&gt;</span>33<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span>44<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span>55<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"child"</span>&gt;</span>66<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>这里的parent块就是包含若干个child块的一个container。<br><br>接下来就是这些个child如何布局的问题了。<br><br><strong>默认：</strong> 桌布（container）的宽度默认情况是视图宽度，如果有样式width：100px，那么就是100px宽了～</p>
+<h2 id="关于container的布局"><a href="#关于container的布局" class="headerlink" title="关于container的布局"></a>关于container的布局</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>:flex; </span><br><span class="line">    <span class="comment">/* 在container上说明要使用flex布局 */</span></span><br><span class="line">    <span class="attribute">flex-direction</span>: row;</span><br><span class="line">    <span class="comment">/* 默认主轴方向就是行 */</span></span><br><span class="line">    <span class="attribute">flex-wrap</span>: wrap; </span><br><span class="line">    <span class="comment">/* 默认情况是nowrap不换行的，当桌布 */</span></span><br><span class="line">    <span class="comment">/* 不够大时（项目的宽度之和大于容器的宽度），不换行的情况下， */</span></span><br><span class="line">    <span class="comment">/* 会压缩各个项目的宽度 */</span></span><br><span class="line">    <span class="comment">/* flex-flow是flex-direction以及flex-wrap的简写 */</span></span><br><span class="line">    <span class="attribute">justify-content</span>: center; </span><br><span class="line">    <span class="comment">/* 在主轴方向上，让桌布上的物品都居中摆放 */</span></span><br><span class="line">    <span class="attribute">align-items</span>:center;</span><br><span class="line">    <span class="comment">/* 在侧轴方向上，物品居中摆放 */</span></span><br><span class="line">    <span class="comment">/* 这边说明一下items的高度问题，在桌布上摆放的物品， */</span></span><br><span class="line">    <span class="comment">/* 他们的对齐方式都是基于各个物品的高度，而这个高度不等 */</span></span><br><span class="line">    <span class="comment">/* 同于他们的内容，例如height：100px */</span></span><br><span class="line">    <span class="attribute">align-content</span>:space-between;</span><br><span class="line">    <span class="comment">/* 用于多列或者多行情况的摆放方式 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一般情况，桌布大小需要包含所有的物品，这样container的这些属性，只是用于控制物品之间的空隙，不会去改变物品自身的大小。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">*&#123;<span class="attribute">margin</span>:<span class="number">0px</span>;<span class="attribute">padding</span>:<span class="number">0px</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.parent</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>:flex;</span><br><span class="line">  <span class="attribute">border</span>:<span class="number">1px</span> solid red;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>:center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.child</span>&#123;</span><br><span class="line">  <span class="attribute">border</span>:<span class="number">1px</span> solid green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.child</span><span class="selector-pseudo">:nth-child(2)</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/flexContainer.png" alt=""></p>
+<h2 id="关于items的布局"><a href="#关于items的布局" class="headerlink" title="关于items的布局"></a>关于items的布局</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.child</span>&#123;</span><br><span class="line">    <span class="attribute">flex-grow</span>:<span class="number">1</span>;</span><br><span class="line">    <span class="comment">/* 如果桌布比较大，空出来很多空间， */</span></span><br><span class="line">    <span class="comment">/* 物品自身的大小可以通过flex-grow得到相应比例的多余空间 */</span></span><br><span class="line">    <span class="attribute">flex-shrink</span>:<span class="number">1</span>;</span><br><span class="line">    <span class="comment">/* 桌布不够时，物品收缩的比例 */</span></span><br><span class="line">    <span class="attribute">flex-basis</span>:<span class="number">100px</span>;</span><br><span class="line">    <span class="comment">/* 不论物品多大，都只给桌布上100px的大小 */</span></span><br><span class="line">    <span class="comment">/* flex是上面三个的简写 */</span></span><br><span class="line">    <span class="attribute">order</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="comment">/* 用于改变当前项目的顺序 */</span></span><br><span class="line">    <span class="attribute">align-self</span>:center;</span><br><span class="line">    <span class="comment">/* 等同于container的align-content的效果，不过只用于当前项自身 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于items的属性，除了order是改变显示的顺序，align-self改变对齐方式外，其余属性是为了分配多余的桌布空间，从而改变自身的大小。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">*&#123;<span class="attribute">margin</span>:<span class="number">0px</span>;<span class="attribute">padding</span>:<span class="number">0px</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.parent</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>:flex;</span><br><span class="line">  <span class="attribute">border</span>:<span class="number">1px</span> solid red;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>:center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.child</span>&#123;</span><br><span class="line">  <span class="attribute">border</span>:<span class="number">1px</span> solid green;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.child</span><span class="selector-pseudo">:nth-child(2)</span>&#123;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">order</span>:<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.child</span><span class="selector-pseudo">:nth-child(1)</span>&#123;</span><br><span class="line">  <span class="attribute">order</span>:<span class="number">2</span>;</span><br><span class="line">  <span class="attribute">flex-grow</span>:<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.child</span><span class="selector-pseudo">:nth-child(3)</span>&#123;</span><br><span class="line">  <span class="attribute">align-self</span>: flex-start;</span><br></pre></td></tr></table></figure>
+<p><img src="/images/flexItems.png" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -257,7 +387,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-19T11:54:49+08:00">
                 2018-05-19
@@ -383,7 +513,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T22:35:59+08:00">
                 2018-04-26
@@ -522,7 +652,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T22:07:22+08:00">
                 2018-04-26
@@ -646,7 +776,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-23T13:46:16+08:00">
                 2018-04-23
@@ -778,7 +908,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-20T15:28:21+08:00">
                 2018-04-20
@@ -905,7 +1035,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-20T15:26:12+08:00">
                 2018-04-20
@@ -1028,7 +1158,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-20T14:56:59+08:00">
                 2018-04-20
@@ -1148,7 +1278,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-20T13:11:45+08:00">
                 2018-04-20
@@ -1295,7 +1425,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-27T12:03:56+08:00">
                 2018-03-27
@@ -1436,243 +1566,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/23/HTML-简介/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="傅里叶子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/23/HTML-简介/" itemprop="url">HTML-简介</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-23T19:57:22+08:00">
-                2018-03-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="W3C简介"><a href="#W3C简介" class="headerlink" title="W3C简介"></a>W3C简介</h2><p>万维网联盟（W3C）由蒂姆·伯纳斯-李（李爵士）于1994年10月离开欧洲核子研究中心（CERN）后成立，在欧盟执委会和国防高等研究计划署（DARPA）的支持下成立于麻省理工学院MIT计算机科学与人工智能实验室（MIT／LCS）。</p>
-<p>W3C制定的标准包括HTML,CSS,XML,XHTML,DOM,SVG等。</p>
-<h2 id="MDN简介"><a href="#MDN简介" class="headerlink" title="MDN简介"></a>MDN简介</h2><p>MDN Web Docs（旧称Mozilla Developer Network、Mozilla Developer Center，简称MDN）是一个汇集众多Mozilla基金会产品和网络技术开发文档的免费网站。<br>作为前端开发者，MDN是一个很好的查阅技术文档的网址。</p>
-<h2 id="HTML的所有标签"><a href="#HTML的所有标签" class="headerlink" title="HTML的所有标签"></a>HTML的所有标签</h2><h3 id="MAIN-ROOT"><a href="#MAIN-ROOT" class="headerlink" title="MAIN ROOT"></a>MAIN ROOT</h3><ul>
-<li>html<h3 id="document-metadata-页面信息"><a href="#document-metadata-页面信息" class="headerlink" title="document metadata (页面信息)"></a>document metadata (页面信息)</h3></li>
-<li>link</li>
-<li>meta (meta 元素表示那些不能由其它HTML元相关元素 (base, link, script, style 或 title) 之一表示的任何元数据信息，meta charset=”utf-8”)</li>
-<li>style </li>
-<li>title<h3 id="sectioning-root"><a href="#sectioning-root" class="headerlink" title="sectioning root"></a>sectioning root</h3></li>
-<li>body <h3 id="content-sectioning"><a href="#content-sectioning" class="headerlink" title="content sectioning"></a>content sectioning</h3></li>
-<li>address (contact information for a person or people, or for an organization)</li>
-<li>article </li>
-<li>aside (表示一个和其余页面内容几乎无关的部分，被认为是独立于该内容的一部分并且可以被单独的拆分出来而不会使整体受影响。其通常表现为侧边栏或者嵌入内容)</li>
-<li>footer </li>
-<li>header</li>
-<li>h1-h6</li>
-<li>hgroup (包含h1-h6标题的集合)</li>
-<li>nav </li>
-<li>section (表示文档中的一个区域（或节），比如，内容中的一个专题组，一般来说会有包含一个标题（heading）)<h3 id="text-content"><a href="#text-content" class="headerlink" title="text content"></a>text content</h3></li>
-<li>blockquote</li>
-<li>dir (已弃用)</li>
-<li>div </li>
-<li>dd (用来指明一个描述列表  (dl) 元素中一个术语的描述。这个元素只能作为描述列表元素的子元素出现，并且必须跟着一个 dt 元素)</li>
-<li>dl (是一个包含术语定义以及描述的列表，通常用于展示词汇表或者元数据 (键-值对列表))</li>
-<li><p>dt (用于在一个定义列表中声明一个术语)</p>
-</li>
-<li><p>figure (代表一段独立的内容，与说明figcaption配合使用，这个标签经常是在主文中引用的图片，插图，表格，代码段等等)</p>
-</li>
-<li>figcaption </li>
-<li>hr (水平线)</li>
-<li>ul (无序列表)</li>
-<li>ol (有序列表)</li>
-<li>li (列表元素)</li>
-<li>main</li>
-<li>p</li>
-<li>pre (表示预定义格式文本。在该元素中的文本通常按照原文件中的编排，以等宽字体的形式展现出来，文本中的空白符（比如空格和换行符）都会显示出来。(紧跟在 pre 开始标签后的换行符也会被省略))<h3 id="Inline-text-semantics"><a href="#Inline-text-semantics" class="headerlink" title="Inline text semantics"></a>Inline text semantics</h3></li>
-<li>a</li>
-<li>abbr (代表缩写，并可选择提供一个完整的描述)</li>
-<li>b (粗体显示)</li>
-<li>bdi </li>
-<li>bdo (改变文本方向)</li>
-<li>br (回车)</li>
-<li>cite (引用)</li>
-<li>code </li>
-<li>data</li>
-<li>dfn (术语的定义)</li>
-<li>em (需要用户着重阅读的内容)</li>
-<li>i </li>
-<li>kbd</li>
-<li>mark</li>
-<li>q (短引用)</li>
-<li>ruby (被用来展示东亚文字注音或字符注释)</li>
-<li>rp</li>
-<li>rt</li>
-<li>rtc</li>
-<li>s (使用删除线来渲染文本。使用 s 元素来表示不再相关，或者不再准确的事情)</li>
-<li>samp (用于标识计算机程序输出)</li>
-<li>small</li>
-<li>span</li>
-<li>strong</li>
-<li>sub (定义了一个文本区域，出于排版的原因，与主要的文本相比，应该展示得更低并且更小)</li>
-<li>sup (定义了一个文本区域，出于排版的原因，与主要的文本相比，应该展示得更高并且更小)</li>
-<li>time</li>
-<li>u</li>
-<li>var </li>
-<li>wbr<h3 id="Image-and-multimedia"><a href="#Image-and-multimedia" class="headerlink" title="Image and multimedia"></a>Image and multimedia</h3></li>
-<li>area</li>
-<li>audio</li>
-<li>img</li>
-<li>map</li>
-<li>track (被当作媒体元素—audio 和 video的子元素来使用。它允许指定计时字幕（或者基于事件的数据），例如自动处理字幕)</li>
-<li>video<h3 id="Embedded-content"><a href="#Embedded-content" class="headerlink" title="Embedded content"></a>Embedded content</h3></li>
-<li>applet (标志着包含了Java的applet)</li>
-<li>embed (将外部内容嵌入文档中的指定位置)</li>
-<li>noembed (已经弃用)</li>
-<li>object (表示引入一个外部资源，这个资源可能是一张图片，一个嵌入的浏览上下文，亦或是一个插件所使用的资源)</li>
-<li>param (定义了 object的参数)</li>
-<li>picture (是一个容器，用来为其内部特定的 img 元素提供多样的 source 元素)</li>
-<li>source (可包含图片，视频，音频等多源媒体的空元素)<h3 id="Scripting"><a href="#Scripting" class="headerlink" title="Scripting"></a>Scripting</h3></li>
-<li>canvas (用来通过脚本（通常是JavaScript）绘制图形)</li>
-<li>script</li>
-<li>noscript (如果页面上的脚本类型不受支持或者当前在浏览器中关闭了脚本，则HTML noscript元素定义要插入的html部分)<h3 id="Demarcating-edits"><a href="#Demarcating-edits" class="headerlink" title="Demarcating edits"></a>Demarcating edits</h3></li>
-<li>del (删除文字元素（del）表示已经从文档中删除的文本范围)</li>
-<li>ins (定义已经被插入文档中的文本)<h3 id="Table-content"><a href="#Table-content" class="headerlink" title="Table content"></a>Table content</h3></li>
-<li>caption (标题)</li>
-<li>col</li>
-<li>colgroup</li>
-<li>table</li>
-<li>tbody</li>
-<li>td</li>
-<li>tfoot</li>
-<li>th</li>
-<li>thead</li>
-<li>tr<h3 id="Forms"><a href="#Forms" class="headerlink" title="Forms"></a>Forms</h3></li>
-<li>button</li>
-<li>datalist</li>
-<li>fieldset</li>
-<li>form</li>
-<li>input</li>
-<li>lable</li>
-<li>legend</li>
-<li>meter</li>
-<li>optgroup</li>
-<li>option</li>
-<li>output</li>
-<li>progress</li>
-<li>select</li>
-<li>textarea<h3 id="Interactive-elements"><a href="#Interactive-elements" class="headerlink" title="Interactive elements"></a>Interactive elements</h3></li>
-<li>details</li>
-<li>dialog</li>
-<li>menu</li>
-<li>menuitem</li>
-<li>summary</li>
-</ul>
-<hr>
-<h2 id="空标签简介"><a href="#空标签简介" class="headerlink" title="空标签简介"></a>空标签简介</h2><p>一个空元素（empty element）可能是 HTML，SVG，或者 MathML 里的一个不可能存在子节点（例如内嵌的元素或者元素内的文本）的element。</p>
-<p>area,<br>base,<br>br,<br>col,<br>colgroup (when the span is present),<br>command,<br>embed,<br>hr,<br>img,<br>input,<br>keygen,<br>link,<br>meta,<br>param,<br>source,<br>track,<br>wbr.</p>
-<h2 id="可替换标签"><a href="#可替换标签" class="headerlink" title="可替换标签"></a>可替换标签</h2><p>可替换元素（replaced element）的展现不是由CSS来控制的。这些元素是一类 外观渲染独立于CSS的 外部对象。 典型的可替换元素有 img、 object、 video 和 表单元素，如textarea、 input 。 某些元素只在一些特殊情况下表现为可替换元素，例如 audio 和 canvas 。 通过 CSS content 属性来插入的对象 被称作 匿名可替换元素（anonymous replaced elements）。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1723,8 +1616,8 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
             
@@ -1774,7 +1667,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
