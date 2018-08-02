@@ -86,7 +86,7 @@ tags:
         order: 1;
         /* 用于改变当前项目的顺序 */
         align-self:center;
-        /* 等同于container的align-content的效果，不过只用于当前项自身 */
+        /* 等同于container的align-items的效果，不过只用于当前项自身 */
     }
 ```
 关于items的属性，除了order是改变显示的顺序，align-self改变对齐方式外，其余属性是为了分配多余的桌布空间，从而改变自身的大小。
@@ -118,3 +118,29 @@ tags:
 
 ```
 ![](/images/flexItems.png)
+
+## 一些特殊技巧
+
+### 1. margin 的妙用
+![](/images/flex-1.png)
+
+变化成如下情况:
+
+![](/images/flex-1-left.png)
+
+
+代码如下：
+``` css
+    .parent{
+        display: flex;
+        justify-content:flex-end;
+        align-items:flex-end;
+    }
+
+    .child:nth-child(2){
+          align-self:center;
+          margin-right:auto;
+          /* 只用加上margin-right就能使得第二个块移到最左边   */
+    }
+```
+
