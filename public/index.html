@@ -181,7 +181,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -191,7 +191,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -214,6 +214,178 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/10/ajxa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="傅里叶子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/10/ajxa/" itemprop="url">ajxa</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-10T15:17:22+08:00">
+                2018-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="谁能发送请求"><a href="#谁能发送请求" class="headerlink" title="谁能发送请求"></a>谁能发送请求</h2><ol>
+<li><p>用 form 可以发请求，但是会刷新页面或新开页面<br></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">"/xxx"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line"> &lt;input type=<span class="string">"password"</span> name=<span class="string">"password"</span>&gt;</span><br><span class="line">  &lt;input type=<span class="string">"submit"</span>&gt;</span><br><span class="line">&lt;<span class="regexp">/form&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用 a 可以发 get 请求，但是也会刷新页面或新开页面<br></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=<span class="string">"/xxx"</span>&gt;lala&lt;<span class="regexp">/a&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用 img 可以发 get 请求，但是只能以图片的形式展示<br></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">"/xxx"</span> alt=<span class="string">"图片"</span>&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用 link 可以发 get 请求，但是只能以 CSS、favicon 的形式展示<br></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> link = <span class="built_in">document</span>.createElement(<span class="string">"link"</span>);</span><br><span class="line">link.rel = <span class="string">"stylesheet"</span>;</span><br><span class="line">link.href = <span class="string">'/xxx'</span>;</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(link); <span class="comment">//执行这句时，才会发起请求</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用 script 可以发 get 请求，但是只能以脚本的形式运行<br><br>这就是早期的跨域策略思想–jsonp，需要后端返回js执行回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>)</span><br><span class="line"><span class="keyword">let</span> functionName = <span class="string">'frank'</span>+<span class="built_in">parseInt</span>(<span class="built_in">Math</span>.randow()*<span class="number">100000</span>,<span class="number">10</span>)</span><br><span class="line"><span class="built_in">window</span>[functionName] =  <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(result===<span class="string">'success'</span>)&#123;</span><br><span class="line">    alert(<span class="string">'success'</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      alert(<span class="string">'fail'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;        <span class="comment">//添加全局的回调函数</span></span><br><span class="line">script.src = <span class="string">'http://127.0.0.1:8080/pay?callback='</span>+functionName;</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(script);</span><br><span class="line">script.onload = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">  e.currentTarget.remove(); <span class="comment">//当script加载成功时，把标签移除</span></span><br><span class="line">  <span class="keyword">delete</span> <span class="built_in">window</span>[functionName] <span class="comment">//移除全局的回调函数</span></span><br><span class="line">&#125;</span><br><span class="line">script.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">  e.currentTarget.remove(); <span class="comment">//当script加载失败时，把标签移除</span></span><br><span class="line">  <span class="keyword">delete</span> <span class="built_in">window</span>[functionName] <span class="comment">//移除全局的回调函数      </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="ajax的出现"><a href="#ajax的出现" class="headerlink" title="ajax的出现"></a>ajax的出现</h2><p><strong>解决的问题:</strong></p>
+<ul>
+<li><p>get、post、put、delete,可选择的请求类型</p>
+</li>
+<li><p>只接受数据，不附带刷新页面或者新开页面的限制</p>
+</li>
+</ul>
+<p><strong>演变的过程：</strong></p>
+<ul>
+<li><p>IE 5 在JS中引入对象ActiveX, 令JS可以直接发起HTTP请求</p>
+</li>
+<li><p>其他浏览器引入XMLHttpRequest，并被纳入 W3C 规范</p>
+</li>
+<li><p>Jesse James Garrett 基于XMLHttpRequest发明ajax</p>
+</li>
+</ul>
+<h2 id="ajax简介"><a href="#ajax简介" class="headerlink" title="ajax简介"></a>ajax简介</h2><p>AJAX (Async Javascript and XML，异步的js和xml)，简单来说，一开始的设计是：</p>
+<ol>
+<li><p>使用 XMLHttpRequest 发请求</p>
+</li>
+<li><p>服务器返回 XML 格式的字符串</p>
+</li>
+<li><p>JS 解析 XML，并更新局部页面</p>
+</li>
+</ol>
+<p>后面随着json的诞生，普遍使用json格式传输数据，从而代替了XML格式。</p>
+<h2 id="XMLHttpRequest实现简单的ajax"><a href="#XMLHttpRequest实现简单的ajax" class="headerlink" title="XMLHttpRequest实现简单的ajax"></a>XMLHttpRequest实现简单的ajax</h2><h3 id="给出node-js写的简单server后端"><a href="#给出node-js写的简单server后端" class="headerlink" title="给出node.js写的简单server后端"></a>给出node.js写的简单server后端</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env node</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>)</span><br><span class="line"><span class="keyword">var</span> port = process.argv[<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!port)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'请指定端口号好不啦？\nnode server.js 8888 这样不会吗？'</span>)</span><br><span class="line">  process.exit(<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> parsedUrl = url.parse(request.url, <span class="literal">true</span>)</span><br><span class="line">  <span class="keyword">var</span> path = request.url </span><br><span class="line">  <span class="keyword">var</span> pathNoQuery = parsedUrl.pathname</span><br><span class="line">  <span class="keyword">var</span> queryObject = parsedUrl.query</span><br><span class="line">  <span class="keyword">var</span> method = request.method</span><br><span class="line"> </span><br><span class="line"> <span class="comment">/******** 从这里开始看，上面不要看 ************/</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'HTTP 路径为\n'</span> + path)</span><br><span class="line">  <span class="keyword">if</span>(path == <span class="string">'/pay'</span>)&#123;</span><br><span class="line">    response.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'text/json'</span>)</span><br><span class="line">    response.statusCode = <span class="number">200</span> </span><br><span class="line">    response.write(<span class="string">`</span></span><br><span class="line"><span class="string">       &#123;</span></span><br><span class="line"><span class="string">           “张”:&#123;</span></span><br><span class="line"><span class="string">               “性别”：“男”，</span></span><br><span class="line"><span class="string">               “年龄”：24</span></span><br><span class="line"><span class="string">           &#125;</span></span><br><span class="line"><span class="string">       &#125;</span></span><br><span class="line"><span class="string">    `</span>)</span><br><span class="line">    response.end()</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    response.statusCode = <span class="number">404</span></span><br><span class="line">    response.end()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/******** 代码结束，下面不要看 ************/</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(port)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'监听 '</span> + port + <span class="string">' 成功\n请用在空中转体720度然后用电饭煲打开 http://localhost:'</span> + port)</span><br></pre></td></tr></table></figure>
+<p>当请求路径是/pay时，返回一串符合json格式的字符串。</p>
+<h3 id="前端ajax实现"><a href="#前端ajax实现" class="headerlink" title="前端ajax实现"></a>前端ajax实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">button.addEventListener(<span class="string">'click'</span>,(e)=&gt;&#123;</span><br><span class="line">    <span class="keyword">let</span> request = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">    request.open(<span class="string">'GET'</span>,<span class="string">'/pay'</span>); <span class="comment">//默认就是异步执行（请求类型，请求路径）</span></span><br><span class="line">    request.send();<span class="comment">//正式发送请求</span></span><br><span class="line">    request.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(request.readystate === <span class="number">4</span>)&#123; <span class="comment">//说明请求已经完成</span></span><br><span class="line">            <span class="keyword">if</span>(request.status === <span class="number">200</span>)&#123; <span class="comment">//说明请求返回，是成功的</span></span><br><span class="line">                <span class="keyword">let</span> object = <span class="built_in">JSON</span>.parse(request.responseText); </span><br><span class="line">                <span class="built_in">console</span>.log(object[<span class="string">"张"</span>][”性别“])；</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="comment">//如果请求的状态发生改变，则会执行当前函数，请求状态为0,1,2,3,4</span></span><br><span class="line">&#125;）</span><br></pre></td></tr></table></figure>
+<p>如果是XML格式的话，使用下面代码进行解析：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> parser = <span class="keyword">new</span> DOMParser();</span><br><span class="line"><span class="keyword">let</span> XMLDoc = parser.parserFromString(request.responseText,<span class="string">"text/xml"</span>);</span><br><span class="line">XMLDoc.getElementsByTagName(<span class="string">"content"</span>)[<span class="number">0</span>].textContent;</span><br></pre></td></tr></table></figure></p>
+<h3 id="通过XMLHttpRequest，完善http的请求与响应"><a href="#通过XMLHttpRequest，完善http的请求与响应" class="headerlink" title="通过XMLHttpRequest，完善http的请求与响应"></a>通过XMLHttpRequest，完善http的请求与响应</h3><h4 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/xxx</span> HTTP/1.1</span><br><span class="line"><span class="attribute">HOST</span>: https://jack.com:8081</span><br><span class="line"><span class="attribute">Content-type</span>: x-www-form-urlencoded</span><br><span class="line"></span><br><span class="line">我是第四部分</span><br></pre></td></tr></table></figure>
+<p>上面是一般http请求的组成结构，下面我们通过设置XMLHttpRequeset进行相应部分的设置。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> request = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">request.open(<span class="string">'GET'</span>,<span class="string">'https://jack.com:8081/xxx'</span>);</span><br><span class="line">request.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"x-www-form-urlencoded"</span>);<span class="comment">//header设置必须在open与send函数之间</span></span><br><span class="line">request.send(<span class="string">"我是第四部分"</span>)</span><br></pre></td></tr></table></figure>
+<p>响应</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Content-type</span>: text/html</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>上面是http响应的一般组成结构，下面我们通过XMLHttpRequest进行相应部分的获取。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> status = request.status; <span class="comment">//200</span></span><br><span class="line"><span class="keyword">let</span> statusText = request.statusText; <span class="comment">//OK</span></span><br><span class="line"><span class="keyword">let</span> content = request.getResponseHeader(<span class="string">"Content-type"</span>); <span class="comment">//text/html</span></span><br><span class="line"><span class="keyword">let</span> allheader = request.getAllResponseHeaders();<span class="comment">//获取全部的header </span></span><br><span class="line"><span class="keyword">let</span> Text = request.responseText; <span class="comment">//第四部分</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -257,7 +429,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-02T21:36:54+08:00">
                 2018-08-02
@@ -391,7 +563,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-19T11:54:49+08:00">
                 2018-05-19
@@ -517,7 +689,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T22:35:59+08:00">
                 2018-04-26
@@ -656,7 +828,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T22:07:22+08:00">
                 2018-04-26
@@ -780,7 +952,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-23T13:46:16+08:00">
                 2018-04-23
@@ -912,7 +1084,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-20T15:28:21+08:00">
                 2018-04-20
@@ -1039,7 +1211,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-20T15:26:12+08:00">
                 2018-04-20
@@ -1162,7 +1334,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-20T14:56:59+08:00">
                 2018-04-20
@@ -1282,7 +1454,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-20T13:11:45+08:00">
                 2018-04-20
@@ -1387,189 +1559,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/HTML常用标签/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="傅里叶子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/27/HTML常用标签/" itemprop="url">HTML常用标签</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-27T12:03:56+08:00">
-                2018-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="iframe标签"><a href="#iframe标签" class="headerlink" title="iframe标签"></a>iframe标签</h2><blockquote>
-<pre><code>&lt;iframe src=&quot;http://qq.com&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
-</code></pre><p>嵌入网页，frameboder=”0”,去除嵌入边框。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;iframe name=baidu src=&quot;#&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;a href=&quot;http://baidu.com&quot; target=baidu&gt;baidu&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<p>通过name跟target，实现点击链接，将网页嵌入iframe中。</p>
-<p><em>通过height和width设置宽高。</em></p>
-<h2 id="a标签"><a href="#a标签" class="headerlink" title="a标签"></a>a标签</h2><blockquote>
-<pre><code>&lt;a href=&quot;http://baidu.com&quot; target=&quot;_blank&quot; &gt;baidu&lt;/a&gt;
-</code></pre><p>_blank在新标签窗口中打开；<br><br>_self在当前窗口打开；<br><br>_parent在父级窗口打开；<br><br>_top在顶级窗口打开。<br></p>
-</blockquote>
-<blockquote>
-<pre><code>&lt;a href=&quot;http://baidu.com&quot; download&gt;baidu&lt;/a&gt;
-</code></pre><p>download属性，实现点击链接之后，浏览器直接进行下载，与Http中声明，Content-type:application/octet-stream效果一致。</p>
-</blockquote>
-<h3 id="a标签的href属性解析"><a href="#a标签的href属性解析" class="headerlink" title="a标签的href属性解析"></a>a标签的href属性解析</h3><ul>
-<li><a href="http://xxxxx" target="_blank" rel="noopener">http://xxxxx</a></li>
-<li>/Desktop||Desktop (路径，例如当前网址为<a href="https://127.0.0.1:8080,点击链接后，网址为https://127.0.0.1:8080/Desktop" target="_blank" rel="noopener">https://127.0.0.1:8080,点击链接后，网址为https://127.0.0.1:8080/Desktop</a>)</li>
-<li>//qq.com (省略协议，协议与当前页面的协议一直，如果当前的html协议位file，则用file协议打开)</li>
-<li>?name=David (例如，<a href="https://127.0.0.1:8080?name=David" target="_blank" rel="noopener">https://127.0.0.1:8080?name=David</a>)</li>
-<li>javascript: alert(1); (伪协议，执行js语句，通常用javascript:;，实现点击之后不跳转)</li>
-<li># (点击之后，会添加锚点，使得页面返回顶端)</li>
-<li>‘ ’ (为空时，点击会刷新页面)</li>
-</ul>
-<h2 id="form标签"><a href="#form标签" class="headerlink" title="form标签"></a>form标签</h2><blockquote>
-<pre><code>&lt;form action=&quot;XXX?name=David&quot; target=&quot;_blank&quot; method=&quot;POST&quot;&gt;&lt;/form&gt;
-</code></pre><p>action属性指定表单提交的地址，可以附带搜索项；method提交的方法POST,GET两种；target与a标签一致。<br><br><strong>注意:表单中只有submit之后，才会提交。当form中，没有type=submit的input，而有button标签时，button标签会被提升为具有submit能力的按钮，type=button的input标签，在这种情况下，只为普通按钮。</strong></p>
-</blockquote>
-<h2 id="input标签"><a href="#input标签" class="headerlink" title="input标签"></a>input标签</h2><ul>
-<li>submit <br><br>样式为button，具有提交表单的能力。</li>
-<li>button </li>
-<li>checkbox (复选框)</li>
-<li>radio (单选框)</li>
-<li>range (滑动条)</li>
-<li>还有很多(<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input" target="_blank" rel="noopener">https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input</a>)</li>
-</ul>
-<p>通常使用label标签，实现文字提示与input标签为整体，有如下两种方式:</p>
-<blockquote>
-<pre><code>&lt;label&gt;Click me &lt;input type=&quot;text&quot;&gt;&lt;/label&gt;
-</code></pre></blockquote>
-<blockquote>
-<pre><code>&lt;label for=&quot;username&quot;&gt;Click me&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;username&quot;&gt;
-</code></pre></blockquote>
-<h2 id="table标签"><a href="#table标签" class="headerlink" title="table标签"></a>table标签</h2><blockquote>
-<pre><code>&lt;table&gt;
-  &lt;colgroup&gt;
-      &lt;col style=&quot;background-color: #0f0&quot;&gt;
-       &lt;col span=&quot;2&quot;&gt;
-   &lt;/colgroup&gt;
-  &lt;thead&gt;表头&lt;/head&gt;
-  &lt;tbody&gt;
-   &lt;tr&gt;
-       &lt;th&gt;Lime&lt;/th&gt;
-       &lt;th&gt;Lemon&lt;/th&gt;
-       &lt;th&gt;Orange&lt;/th&gt;
-   &lt;/tr&gt;
-   &lt;tr&gt;
-       &lt;td&gt;Green&lt;/td&gt;
-       &lt;td&gt;Yellow&lt;/td&gt;
-       &lt;td&gt;Orange&lt;/td&gt;
-   &lt;/tr&gt;
-   &lt;/tbody&gt;
-   &lt;tfoot&gt;表尾&lt;/tfoot&gt;
-   &lt;/table&gt;
-</code></pre></blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1620,8 +1609,8 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -1671,7 +1660,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
