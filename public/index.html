@@ -181,7 +181,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -191,7 +191,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -214,6 +214,136 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/Promise/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="傅里叶子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/13/Promise/" itemprop="url">Promise</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-13T16:23:50+08:00">
+                2018-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="自己封装的jQuery-ajax"><a href="#自己封装的jQuery-ajax" class="headerlink" title="自己封装的jQuery.ajax"></a>自己封装的jQuery.ajax</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery = <span class="function"><span class="keyword">function</span>(<span class="params">nodeOrSelector</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> nodes = &#123;&#125;</span><br><span class="line">  nodes.addClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  nodes.html = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  <span class="keyword">return</span> nodes</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.$ = <span class="built_in">window</span>.jQuery</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.jQuery.ajax = <span class="function"><span class="keyword">function</span>(<span class="params">&#123;url, method, body, successFn, failFn, headers&#125;</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> request = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">  request.open(method, url) <span class="comment">// 配置request</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> headers) &#123;</span><br><span class="line">    <span class="keyword">let</span> value = headers[key]</span><br><span class="line">    request.setRequestHeader(key, value)</span><br><span class="line">  &#125;</span><br><span class="line">  request.onreadystatechange = <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(request.readyState === <span class="number">4</span>)&#123;</span><br><span class="line">      <span class="keyword">if</span>(request.status &gt;= <span class="number">200</span> &amp;&amp; request.status &lt; <span class="number">300</span>)&#123;</span><br><span class="line">        successFn.call(<span class="literal">undefined</span>, request.responseText)</span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(request.status &gt;= <span class="number">400</span>)&#123;</span><br><span class="line">        failFn.call(<span class="literal">undefined</span>, request)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  request.send(body)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果要准确执行上述的ajax函数，我们必须知道其中成功与失败的回调函数的位置或者相应的属性名。这就表明对于一些封装好的函数，为了能够正常使用，我们需要看它的文档。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params">responseText</span>)</span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params">responseText</span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">myButton.addEventListener(<span class="string">'click'</span>, (e)=&gt;&#123;</span><br><span class="line">  <span class="built_in">window</span>.jQuery.ajax(&#123;</span><br><span class="line">    url: <span class="string">'/frank'</span>,</span><br><span class="line">    method: <span class="string">'get'</span>,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      <span class="string">'content-type'</span>:<span class="string">'application/x-www-form-urlencoded'</span>,</span><br><span class="line">      <span class="string">'frank'</span>: <span class="string">'18'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    successFn: <span class="function">(<span class="params">x</span>)=&gt;</span>&#123;</span><br><span class="line">      f1.call(<span class="literal">undefined</span>,x)</span><br><span class="line">      f2.call(<span class="literal">undefined</span>,x)</span><br><span class="line">    &#125;,</span><br><span class="line">    failFn: <span class="function">(<span class="params">x</span>)=&gt;</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(x)</span><br><span class="line">      <span class="built_in">console</span>.log(x.status)</span><br><span class="line">      <span class="built_in">console</span>.log(x.responseText)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="再来看看实际jQuer-ajax"><a href="#再来看看实际jQuer-ajax" class="headerlink" title="再来看看实际jQuer.ajax"></a>再来看看实际jQuer.ajax</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    url: <span class="string">'/frank'</span>,</span><br><span class="line">    method: <span class="string">'get'</span>,</span><br><span class="line">    headers: &#123;</span><br><span class="line">    <span class="string">'content-type'</span>:<span class="string">'application/x-www-form-urlencoded'</span>,</span><br><span class="line">    <span class="string">'frank'</span>: <span class="string">'18'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;).then(success,fail);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">success</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">   f1.call(<span class="literal">undefined</span>,x)</span><br><span class="line">   f2.call(<span class="literal">undefined</span>,x)       </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fail</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x)</span><br><span class="line">  <span class="built_in">console</span>.log(x.status)</span><br><span class="line">  <span class="built_in">console</span>.log(x.responseText)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实际jQuery的ajax用promise进行了封装，then()里面传递成功与失败的回调函数，不需要去查看文档。<strong>所以promise第一个好处是确定了一种规范。</strong></p>
+<h2 id="Promise可以对结果进行链式处理"><a href="#Promise可以对结果进行链式处理" class="headerlink" title="Promise可以对结果进行链式处理"></a>Promise可以对结果进行链式处理</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;&#125;).then(f1,f2).then(f3,f4).then()......</span><br></pre></td></tr></table></figure>
+<p>每一次then()处理完返回的数据，也是一个promise的实例，可以对于返回的结果，再一次进行then()。</p>
+<h2 id="用promise自己封装ajax"><a href="#用promise自己封装ajax" class="headerlink" title="用promise自己封装ajax"></a>用promise自己封装ajax</h2><p>简单的使用一下promis：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> promise = <span class="function"><span class="keyword">function</span>(<span class="params">argument</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">        <span class="comment">//成功的话</span></span><br><span class="line">        resolve,call(<span class="literal">undefined</span>,argument);</span><br><span class="line">        <span class="comment">//失败的话</span></span><br><span class="line">        reject.call(<span class="literal">undefined</span>,argument);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">promise.then(<span class="function"><span class="params">()</span>=&gt;</span>&#123;&#125;,()=&gt;&#123;&#125;); <span class="comment">//传递两个函数，第一个为成功，第二个为失败即可。</span></span><br></pre></td></tr></table></figure>
+<p>将自己编写的ajax用promise封装如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.jQuery = <span class="function"><span class="keyword">function</span>(<span class="params">nodeOrSelector</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> nodes = &#123;&#125;</span><br><span class="line">  nodes.addClass = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  nodes.html = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  <span class="keyword">return</span> nodes</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.$ = <span class="built_in">window</span>.jQuery</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.Promise = <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>)</span>&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    then: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.jQuery.ajax = <span class="function"><span class="keyword">function</span>(<span class="params">&#123;url, method, body, headers&#125;</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> request = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">    request.open(method, url) <span class="comment">// 配置request</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> headers) &#123;</span><br><span class="line">      <span class="keyword">let</span> value = headers[key]</span><br><span class="line">      request.setRequestHeader(key, value)</span><br><span class="line">    &#125;</span><br><span class="line">    request.onreadystatechange = <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(request.readyState === <span class="number">4</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(request.status &gt;= <span class="number">200</span> &amp;&amp; request.status &lt; <span class="number">300</span>)&#123;</span><br><span class="line">          resolve.call(<span class="literal">undefined</span>, request.responseText)</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(request.status &gt;= <span class="number">400</span>)&#123;</span><br><span class="line">          reject.call(<span class="literal">undefined</span>, request)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    request.send(body)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myButton.addEventListener(<span class="string">'click'</span>, (e)=&gt;&#123;</span><br><span class="line">  <span class="keyword">let</span> promise = <span class="built_in">window</span>.jQuery.ajax(&#123;</span><br><span class="line">    url: <span class="string">'/xxx'</span>,</span><br><span class="line">    method: <span class="string">'get'</span>,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      <span class="string">'content-type'</span>:<span class="string">'application/ruxiax-www-form-urlencoded'</span>,</span><br><span class="line">      <span class="string">'frank'</span>: <span class="string">'18'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  promise.then(</span><br><span class="line">    (text)=&gt;&#123;<span class="built_in">console</span>.log(text)&#125;,</span><br><span class="line">    (request)=&gt;&#123;<span class="built_in">console</span>.log(request)&#125;</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -257,7 +387,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-13T15:26:26+08:00">
                 2018-08-13
@@ -400,7 +530,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-10T15:17:22+08:00">
                 2018-08-10
@@ -572,7 +702,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-02T21:36:54+08:00">
                 2018-08-02
@@ -706,7 +836,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-19T11:54:49+08:00">
                 2018-05-19
@@ -832,7 +962,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T22:35:59+08:00">
                 2018-04-26
@@ -971,7 +1101,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T22:07:22+08:00">
                 2018-04-26
@@ -1095,7 +1225,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-23T13:46:16+08:00">
                 2018-04-23
@@ -1227,7 +1357,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-20T15:28:21+08:00">
                 2018-04-20
@@ -1354,7 +1484,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-20T15:26:12+08:00">
                 2018-04-20
@@ -1400,126 +1530,6 @@
 <p>a -&gt; 01100001 英文只占一个字节<br>你 -&gt; 11100100 10111101 1010000 三个字节（如果存两个字节，不能被系统辨别为2个字符还是1个）</p>
 <p>第一个字节的111表示读取三个字节，其余的0100 10111101 1010000组成–&gt;你的unicode编码为00000000 00000000 01001111 01100000</p>
 <h2 id="历史遗留问题"><a href="#历史遗留问题" class="headerlink" title="历史遗留问题"></a>历史遗留问题</h2><p>ES5之前，JavaScript用Unicode，而不用UTF-8，只能表示两个字节以内的字符。<br>ES6已经改善。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/20/小本本/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="傅里叶子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/20/小本本/" itemprop="url">小本本</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-20T14:56:59+08:00">
-                2018-04-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><em>进制转换</em>：可能导致有限小数变为无限小数。</p>
 
           
         
@@ -1605,8 +1615,8 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
             
@@ -1656,7 +1666,7 @@
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
