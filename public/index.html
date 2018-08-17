@@ -181,7 +181,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -191,7 +191,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -214,6 +214,148 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/17/session与cookie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="傅里叶子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/17/session与cookie/" itemprop="url">session与cookie</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-17T21:38:11+08:00">
+                2018-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p>简单来说，session是基于Cookie实现的。Cookie是服务器发送到浏览器上的一小段文本，这个文本是明文的，浏览器跟用户是可以看到并进行修改的。</p>
+<p>如果需要传递一些敏感信息的话，并不安全，所以有了session这样的应用。</p>
+<h2 id="session的实现"><a href="#session的实现" class="headerlink" title="session的实现"></a>session的实现</h2><ol>
+<li><p>在服务器端开辟一段内存，存储一个hash表。</p>
+</li>
+<li><p>hash表类似于{11221.1213123:{email:<a href="mailto:23882@qq.com" target="_blank" rel="noopener">23882@qq.com</a>;password:123456}},每一个随机数，对应一个用户的相关信息。</p>
+</li>
+<li><p>当向浏览器返回cooki时，带上对应用户的随机数（sessionID）</p>
+</li>
+<li><p>当浏览器再次向服务器访问时，带上的cookie包含一个sessionID，服务器只用去响应的内存中，查找相应的hash表。</p>
+</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><strong>Cookie</strong></p>
+<p>服务器通过 Set-Cookie 头给客户端一串字符串</p>
+<p>客户端每次访问相同域名的网页时，必须带上这段字符串</p>
+<p>客户端要在一段时间内保存这个Cookie</p>
+<p>Cookie 默认在用户关闭页面后就失效，后台代码可以任意设置 Cookie 的过期时间</p>
+<p>大小大概在 4kb 以内</p>
+<p><strong>Session</strong></p>
+<p>将 SessionID（随机数）通过 Cookie 发给客户端</p>
+<p>客户端访问服务器时，服务器读取 SessionID</p>
+<p>服务器有一块内存（哈希表）保存了所有 session</p>
+<p>通过 SessionID 我们可以得到对应用户的隐私信息，如 id、email<br>这块内存（哈希表）就是服务器上的所有 session</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -257,7 +399,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-17T20:25:05+08:00">
                 2018-08-17
@@ -419,7 +561,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-17T15:06:37+08:00">
                 2018-08-17
@@ -544,7 +686,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-13T16:23:50+08:00">
                 2018-08-13
@@ -674,7 +816,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-13T15:26:26+08:00">
                 2018-08-13
@@ -817,7 +959,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-10T15:17:22+08:00">
                 2018-08-10
@@ -989,7 +1131,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-02T21:36:54+08:00">
                 2018-08-02
@@ -1123,7 +1265,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-19T11:54:49+08:00">
                 2018-05-19
@@ -1249,7 +1391,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T22:35:59+08:00">
                 2018-04-26
@@ -1388,7 +1530,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T22:07:22+08:00">
                 2018-04-26
@@ -1435,138 +1577,6 @@
 <li>定义一个构造函数jQuery，并返回具有各种属性和方法的对象。</li>
 <li>通过调用jQuery，能够实例化对象，执行相关的方法。</li>
 </ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/23/CSS积累-0-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="傅里叶子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/23/CSS积累-0-1/" itemprop="url">CSS积累_0.1</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-23T13:46:16+08:00">
-                2018-04-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="CSS简介"><a href="#CSS简介" class="headerlink" title="CSS简介"></a>CSS简介</h2><p>Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation of a document written in HTML or XML (including XML dialects such as SVG or XHTML). CSS describes how elements should be rendered on screen, on paper, in speech, or on other media. </p>
-<h3 id="导入CSS"><a href="#导入CSS" class="headerlink" title="导入CSS"></a>导入CSS</h3><ul>
-<li>style 标签</li>
-<li>style 属性</li>
-<li>@import url(./a.css)</li>
-</ul>
-<h3 id="横向排列"><a href="#横向排列" class="headerlink" title="横向排列"></a>横向排列</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">float</span><span class="selector-pseudo">:left</span>;  <span class="comment">/*子元素添加float属性*/</span></span><br><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">    <span class="attribute">content</span>:<span class="string">""</span>;</span><br><span class="line">    <span class="attribute">display</span>:block;</span><br><span class="line">    <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;  <span class="comment">/*父元素添加clearfix类，用于清除浮动*/</span></span><br></pre></td></tr></table></figure>
-<p><strong>清除浮动:</strong> 当父级元素内的子元素浮动时，可能会导致父级元素的高度塌陷，即父级元素包不住子元素。清除浮动使父元素的高度始终由子元素的高度决定，避免塌陷现象。</p>
-<h3 id="去除原有样式"><a href="#去除原有样式" class="headerlink" title="去除原有样式"></a>去除原有样式</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">text-decoration</span><span class="selector-pseudo">:none</span>;<span class="comment">/*去除下划线*/</span></span><br><span class="line"><span class="selector-tag">list-style</span><span class="selector-pseudo">:none</span>;<span class="comment">/*去除li标签的点样式*/</span></span><br></pre></td></tr></table></figure>
-<h3 id="li-gt-a-高度不一致"><a href="#li-gt-a-高度不一致" class="headerlink" title="li&gt;a 高度不一致"></a>li&gt;a 高度不一致</h3><blockquote>
-<pre><code>li&gt;a{display:block}
-</code></pre></blockquote>
-<p><img src="/images/liaWoutDisBlock.png" alt="默认"><br><img src="/images/liaWithDisBlock.png" alt="display:block"></p>
 
           
         
@@ -1652,8 +1662,8 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
-                  <span class="site-state-item-name">Artikel</span>
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
@@ -1703,7 +1713,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
