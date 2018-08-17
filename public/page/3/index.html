@@ -79,16 +79,12 @@
 
 
 
-<meta name="description" content="同源策略浏览器的同源策略： 浏览器只有在协议+端口+域名一模一样才允许发送AJAX，读取Cookie，LocalStorage，IndexDB以及获得DOM。 阮一峰的浏览器同源政策及其规避方法 CORS(Cross-origin resource sharing)这篇博客主要针对于ajax的只能同源使用的限制，利用CORS跨域资源请求，来进行不同源的ajax请求。 12345http://www">
-<meta property="og:type" content="article">
-<meta property="og:title" content="同源策略CORS">
-<meta property="og:url" content="http://yoursite.com/2018/08/13/同源策略CORS/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="傅里叶子">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="傅里叶子">
-<meta property="og:description" content="同源策略浏览器的同源策略： 浏览器只有在协议+端口+域名一模一样才允许发送AJAX，读取Cookie，LocalStorage，IndexDB以及获得DOM。 阮一峰的浏览器同源政策及其规避方法 CORS(Cross-origin resource sharing)这篇博客主要针对于ajax的只能同源使用的限制，利用CORS跨域资源请求，来进行不同源的ajax请求。 12345http://www">
-<meta property="og:updated_time" content="2018-08-13T08:16:19.164Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="同源策略CORS">
-<meta name="twitter:description" content="同源策略浏览器的同源策略： 浏览器只有在协议+端口+域名一模一样才允许发送AJAX，读取Cookie，LocalStorage，IndexDB以及获得DOM。 阮一峰的浏览器同源政策及其规避方法 CORS(Cross-origin resource sharing)这篇博客主要针对于ajax的只能同源使用的限制，利用CORS跨域资源请求，来进行不同源的ajax请求。 12345http://www">
+<meta name="twitter:title" content="傅里叶子">
 
 
 
@@ -118,13 +114,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/13/同源策略CORS/"/>
+  <link rel="canonical" href="http://yoursite.com/page/3/"/>
 
 
 
 
 
-  <title>同源策略CORS | 傅里叶子</title>
+  <title>傅里叶子</title>
   
 
 
@@ -143,7 +139,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -216,9 +213,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -231,7 +228,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/同源策略CORS/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/20/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="张">
@@ -248,7 +245,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">同源策略CORS</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/20/hello-world/" itemprop="url">Hello World</a></h1>
         
 
         <div class="post-meta">
@@ -260,8 +259,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-13T15:26:26+08:00">
-                2018-08-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-20T16:21:55+08:00">
+                2018-03-20
               </time>
             
 
@@ -298,31 +297,20 @@
       
 
       
-        <h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><p>浏览器的同源策略：</p>
-<p>浏览器只有在协议+端口+域名一模一样才允许发送AJAX，读取Cookie，LocalStorage，IndexDB以及获得DOM。</p>
-<p><a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html" target="_blank" rel="noopener">阮一峰的浏览器同源政策及其规避方法</a></p>
-<h2 id="CORS-Cross-origin-resource-sharing"><a href="#CORS-Cross-origin-resource-sharing" class="headerlink" title="CORS(Cross-origin resource sharing)"></a>CORS(Cross-origin resource sharing)</h2><p>这篇博客主要针对于ajax的只能同源使用的限制，利用CORS跨域资源请求，来进行不同源的ajax请求。</p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">http://www.example.com/dir/page.html</span></span><br><span class="line"><span class="attribute">http://www.example.com/dir2/other.html：同源</span></span><br><span class="line"><span class="attribute">http://example.com/dir/other.html：不同源（域名不同）</span></span><br><span class="line"><span class="attribute">http://v2.www.example.com/dir/other.html：不同源（域名不同）</span></span><br><span class="line"><span class="attribute">http://www.example.com:81/dir/other.html：不同源（端口不同）</span></span><br></pre></td></tr></table></figure>
-<h3 id="流程情况（简单请求）"><a href="#流程情况（简单请求）" class="headerlink" title="流程情况（简单请求）"></a>流程情况（简单请求）</h3><p>当一个网源A向不同源的网源B发起ajax请求时：</p>
-<ul>
-<li><p>浏览器会自动在请求头中，加入Origin字段，信息为网源A的地址（协议+域名+端口）</p>
-</li>
-<li><p>当服务器接收到请求之后，获取Origin字段信息，检查是否在许可范围内</p>
-</li>
-<li><p>若满足许可，则响应头中，加入如下字段</p>
-</li>
-</ul>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Access-Control-Allow-Origin</span>: http://api.bob.com（！必须）</span><br><span class="line"><span class="attribute">Access-Control-Allow-Credentials</span>: true  （可选）</span><br><span class="line"><span class="attribute">Access-Control-Expose-Headers</span>: FooBar   （可选）</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>浏览器接收到请求之后，自动解析响应头中的Access-Control-信息，若包含A网源，则自动完成ajax请求</p>
-</li>
-<li><p>若浏览器没有接收到Access-Control-信息或者不包含A网源，则抛出异常，可被XMLHttpRequest的onerror回调函数捕获（！！注意，这种错误无法通过状态码识别，因为HTTP回应的状态码有可能是200。）</p>
-</li>
-</ul>
-<p>当在实际情况中，ajax的CORS实现主要是在服务器端，响应头需要添加包含Access-Control-信息的字段。</p>
-<p>上述的流程只是针对简单的CORS请求，非简单请求请参考 <a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">阮一峰的跨域资源共享 CORS 详解</a></p>
-<h3 id="JSONP对比"><a href="#JSONP对比" class="headerlink" title="JSONP对比"></a>JSONP对比</h3><p>简单来说： JSONP只支持GET, 而CORS支持所有类型的请求。</p>
+        
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
+          
+        
       
     </div>
     
@@ -339,32 +327,12 @@
       
 
       
-      
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/08/10/ajxa/" rel="next" title="ajxa">
-                <i class="fa fa-chevron-left"></i> ajxa
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/13/Promise/" rel="prev" title="Promise">
-                Promise <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -374,11 +342,14 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
 
 
           </div>
@@ -386,10 +357,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -410,17 +377,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -462,22 +420,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#同源策略"><span class="nav-number">1.</span> <span class="nav-text">同源策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CORS-Cross-origin-resource-sharing"><span class="nav-number">2.</span> <span class="nav-text">CORS(Cross-origin resource sharing)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#流程情况（简单请求）"><span class="nav-number">2.1.</span> <span class="nav-text">流程情况（简单请求）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSONP对比"><span class="nav-number">2.2.</span> <span class="nav-text">JSONP对比</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -611,10 +553,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
