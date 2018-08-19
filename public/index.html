@@ -228,6 +228,138 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/17/HTTP缓存/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="傅里叶子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/17/HTTP缓存/" itemprop="url">HTTP缓存</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-17T22:36:41+08:00">
+                2018-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h2><p>针对一些服务器返回的js，css，图片等资源时，为了避免浏览器每次发送请求，都要进行下载，在http响应头中添加Cache-Control，告诉浏览器在一定时间内，如果是相同的url请求，就不要再发了。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Content-Type</span>: application/javascript; charset=utf-8;</span><br><span class="line"><span class="attribute">Cache-Control</span>: max-age = 30; </span><br><span class="line">&lt;!-- 30内不要再向这个url发送请求了，请直接用浏览器的缓存 --&gt;</span><br><span class="line">var a;.....</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> 首页不能设置Cache-Control，如果设置了，那么用户访问的首页将会从浏览器缓存中的网页，不能及时的得到最新的网页信息。</p>
+<h2 id="实现更新"><a href="#实现更新" class="headerlink" title="实现更新"></a>实现更新</h2><p>一般情况下，对于js，css文件Cache-Control会设置一年的时间，如果这个期间部分文件更新了，怎么实现更新呢？</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://www.example.com/main.js"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 如果请求相同的url，由于设置了Cache-Control，浏览器会不再发送请求了，所以用下面的方式来变化url --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://www.example.com/main.js？v=1"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 后面加上了参数，这样就会重新发起请求 --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://www.example.com/main.2112414.js"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 可以改变中间的随机数来重新发起请求 --&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Expires：Thu，15 Apr  2010  20：00：00  GMT;</span><br></pre></td></tr></table></figure>
+<p>通过指定一个具体的时间，在这个时间点内，不要再发送请求了，直接用缓存。</p>
+<p><strong>如果已经设置了Cache-Control,则expires会被忽略。</strong></p>
+<p>由于expires是基于本地时间的，当本地的时间出现错乱时，就不靠谱了，所以后面才出现了Cache-Control。</p>
+<h2 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a>ETag</h2><p>通过MD5摘要算法将文件进行计算，得到一个md5值，存放在ETag字段中。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Etag="fca75d26f6dc8111a7d1b24e9debd652"</span><br></pre></td></tr></table></figure>
+<p>服务器将文件对应的MD5值，通过Etag发给浏览器，当浏览器刷新或者重新向服务器请求相同的url时，会自动在http请求头加上if-none-match：对应的MD5<br>值，如果服务器发现这个值跟自己文件MD5值是一致的，说明文件没有更新和变化，就不会再发送文件，而是返回304状态值（未修改）。</p>
+<p>Etag与Cache-Control的区别是，ETag每次都会发送请求，但是Cache-Control是请求都不会发的。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/17/LocalStorage和SessionStorage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1493,145 +1625,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/26/Flex-弹性布局/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="傅里叶子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/26/Flex-弹性布局/" itemprop="url">Flex-弹性布局</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-26T22:35:59+08:00">
-                2018-04-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>1. flex布局与方向无关</strong><br><strong>2. 空间自动分配，自动对齐</strong><br><strong>3. 适用于简单的线性布局，更复杂的布局交给grid布局</strong></p>
-<p><img src="/images/flexbox.png" alt=""></p>
-<h2 id="flex-container-弹性容器"><a href="#flex-container-弹性容器" class="headerlink" title="flex container(弹性容器)"></a>flex container(弹性容器)</h2><p><em>包含弹性项目的父元素，通过设置display 属性的值为 flex 或 inline-flex 来定义弹性容器</em></p>
-<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><ul>
-<li><strong>flex-direction:</strong> 确定主轴，row从左到右(默认)，row-reverse从右到左，column从上到下，column-reverse从下到上</li>
-<li><strong>flex-wrap:</strong> 换行/列，nowrap(默认)，wrap</li>
-<li><strong>flex-flow:</strong> 上面两个的简写</li>
-<li><strong>justify-content:</strong> 主轴对齐方式，space-between，space-around,flex-start(往起点靠),flex-end(终点)，center</li>
-<li><strong>align-items:</strong> 测轴对齐方式，stretch(伸展为最高元素一样)，flex-start，flex-end,center</li>
-<li><strong>align-content:</strong> 多行/列内容对齐方式，baseline(文字对齐)，stretch(默认，平均分布)，space-between,space-around,flex-start,flex-end</li>
-</ul>
-<h2 id="flex-item"><a href="#flex-item" class="headerlink" title="flex-item"></a>flex-item</h2><p><em>弹性容器的每个子元素都称为弹性项目。弹性容器直接包含的文本将被包覆成匿名弹性单元</em></p>
-<h3 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h3><ul>
-<li><strong>flex-grow:</strong> 增长比例，分配多余空间(默认为0，不放大)</li>
-<li><strong>flex-shrink:</strong> 收缩比例，默认为1，设置为0时，不参与收缩</li>
-<li><strong>flex-basis:</strong> 默认大小auto，默认的宽度由内容决定</li>
-<li><strong>flex:</strong> 上面三个的缩写，auto(1 1 auto),none(0 0 auto)</li>
-<li><strong>order:</strong> 排列顺序</li>
-<li><strong>align-self:</strong> 自身对齐方式(高度不能写死)，flex-end，center，flex-start</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1682,7 +1675,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
