@@ -228,6 +228,132 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/19/jsonp简介/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="张">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="傅里叶子">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/19/jsonp简介/" itemprop="url">jsonp简介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-19T11:54:49+08:00">
+                2018-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="what-is-JSONP"><a href="#what-is-JSONP" class="headerlink" title="what is JSONP"></a>what is JSONP</h1><p>JSONP（JSON with Padding）是数据格式JSON的一种“使用模式”，可以让网页从别的网域要数据。<br>利用script元素的这个开放策略，网页可以得到从其他来源动态产生的JSON数据，而这种使用模式就是所谓的JSONP。用JSONP抓到的数据并不是JSON，而是任意的JavaScript，用JavaScript解释器运行而不是用JSON解析器解析。</p>
+<p>简单来说：JSONP利用动态的创建script标签，来获取其他网站的数据。由于script标签获取的方式是GET，所以JSONP只能支持GET。</p>
+<h2 id="响应服务器端实现（node-js）"><a href="#响应服务器端实现（node-js）" class="headerlink" title="响应服务器端实现（node.js）"></a>响应服务器端实现（node.js）</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env node</span></span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">var</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>)</span><br><span class="line"><span class="keyword">var</span> port = process.argv[<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!port)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'请指定端口号好不啦？\nnode server.js 8888 这样不会吗？'</span>)</span><br><span class="line">  process.exit(<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> server = http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">request, response</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> parsedUrl = url.parse(request.url, <span class="literal">true</span>)</span><br><span class="line">  <span class="keyword">var</span> path = request.url </span><br><span class="line">  <span class="keyword">var</span> query = <span class="string">''</span></span><br><span class="line">  <span class="keyword">if</span>(path.indexOf(<span class="string">'?'</span>) &gt;= <span class="number">0</span>)&#123; query = path.substring(path.indexOf(<span class="string">'?'</span>)) &#125;</span><br><span class="line">  <span class="keyword">var</span> pathNoQuery = parsedUrl.pathname</span><br><span class="line">  <span class="keyword">var</span> queryObject = parsedUrl.query</span><br><span class="line">  <span class="keyword">var</span> method = request.method</span><br><span class="line"> </span><br><span class="line"> <span class="comment">/******** 从这里开始看，上面不要看 ************/</span></span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'HTTP 路径为\n'</span> + path)</span><br><span class="line">  <span class="keyword">if</span>(path == <span class="string">'/style.css'</span>)&#123;</span><br><span class="line">    response.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'text/css; charset=utf-8'</span>)</span><br><span class="line">    response.write(<span class="string">'body&#123;background-color: #ddd;&#125;h1&#123;color: red;&#125;'</span>)</span><br><span class="line">    response.end()</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span>(path == <span class="string">'/main.js'</span>)&#123;</span><br><span class="line">    response.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'text/javascript; charset=utf-8'</span>)</span><br><span class="line">    response.write(<span class="string">'alert("这是JS执行的")'</span>)</span><br><span class="line">    response.end()</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span>(path == <span class="string">'/pay'</span>)&#123;</span><br><span class="line">    response.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'application/javascript'</span>)</span><br><span class="line">    response.statusCode = <span class="number">200</span> </span><br><span class="line">    response.write(<span class="string">`<span class="subst">$&#123;query.callback&#125;</span>.call(undefined,'success')`</span>)</span><br><span class="line">    response.end()</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    response.statusCode = <span class="number">404</span></span><br><span class="line">    response.end()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/******** 代码结束，下面不要看 ************/</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(port)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'监听 '</span> + port + <span class="string">' 成功\n请用在空中转体720度然后用电饭煲打开 http://localhost:'</span> + port)</span><br></pre></td></tr></table></figure>
+<p>主要部分在/pay，定义httpHeader，Content-Type : application/javascript。<br>http的内容部分为js的回调函数，函数名存于callback，如果需要返回数据，则添加到函数参数中。<br>当浏览器接收到返回数据，则会执行该js语句。</p>
+<h2 id="网页实现"><a href="#网页实现" class="headerlink" title="网页实现"></a>网页实现</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">button.addEventListener(<span class="string">'click'</span>,(e)=&gt;&#123;</span><br><span class="line">  <span class="keyword">let</span> script = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>)</span><br><span class="line">  <span class="keyword">let</span> functionName = <span class="string">'frank'</span>+<span class="built_in">parseInt</span>(<span class="built_in">Math</span>.randow()*<span class="number">100000</span>,<span class="number">10</span>)</span><br><span class="line">  <span class="built_in">window</span>[functionName] =  <span class="function"><span class="keyword">function</span>(<span class="params">result</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(result===<span class="string">'success'</span>)&#123;</span><br><span class="line">      alert(<span class="string">'success'</span>)</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        alert(<span class="string">'fail'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;        <span class="comment">//添加全局的回调函数</span></span><br><span class="line">  script.src = <span class="string">'http://127.0.0.1:8080/pay?callback='</span>+functionName;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(script);</span><br><span class="line">  script.onload = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    e.currentTarget.remove(); <span class="comment">//当script加载成功时，把标签移除</span></span><br><span class="line">    <span class="keyword">delete</span> <span class="built_in">window</span>[functionName] <span class="comment">//移除全局的回调函数</span></span><br><span class="line">  &#125;</span><br><span class="line">  script.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">    e.currentTarget.remove(); <span class="comment">//当script加载成功时，把标签移除</span></span><br><span class="line">    <span class="keyword">delete</span> <span class="built_in">window</span>[functionName] <span class="comment">//移除全局的回调函数      </span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>主要是构造一个全局的回调函数。在script加载之后，执行回调。</p>
+<h3 id="用jQuery实现"><a href="#用jQuery实现" class="headerlink" title="用jQuery实现"></a>用jQuery实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">  url : <span class="string">'http://127.0.0.1:8080/pay'</span>,</span><br><span class="line">  dataType : <span class="string">"jsonp"</span>,</span><br><span class="line">  success :  <span class="function"><span class="keyword">function</span>(<span class="params">response</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(response === <span class="string">"success"</span>)&#123;</span><br><span class="line">      alert(<span class="string">'success'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/26/Flex-弹性布局/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1547,148 +1673,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/21/hexo安装、github同步/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="张">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="傅里叶子">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/21/hexo安装、github同步/" itemprop="url">hexo安装、github同步</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T12:26:00+08:00">
-                2018-03-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>linux系统中需要提前安装有npm和git,并且配置了github的ssh</strong></p>
-<h1 id="linux安装hexo"><a href="#linux安装hexo" class="headerlink" title="linux安装hexo"></a>linux安装hexo</h1><ul>
-<li>npm install -g hexo-cli，可能会提示权限不够，用<br>sudo执行即可</li>
-<li>hexo -v </li>
-<li>若提示hexo command not found，在PATH中添加hexo/bin的路径即可</li>
-<li>安装成功后，hexo init myBlog</li>
-<li>进入myBlog目录，cd myBlog</li>
-<li>npm install</li>
-<li>hexo new 文章名，新建一篇文章，成功后，显示该文章所在路径</li>
-<li>编辑myBlog中的_config.yml配置文件，title: 博客名，author: 作者名，type: git，添加repo: github仓库地址<br><strong>注意：repo:后面有空格</strong></li>
-<li>npm install hexo-deploy-git –save,部署git插件</li>
-<li>hexo deploy</li>
-</ul>
-<h1 id="github关联hexo"><a href="#github关联hexo" class="headerlink" title="github关联hexo"></a>github关联hexo</h1><ul>
-<li>新建空repo仓库，仓库名称为 用户名.github.io</li>
-<li>开启仓库的GitHub Pages功能</li>
-</ul>
-<h1 id="后续编写博客流程"><a href="#后续编写博客流程" class="headerlink" title="后续编写博客流程"></a>后续编写博客流程</h1><ul>
-<li>hexo new 文章名</li>
-<li>编辑文章</li>
-<li>hexo generate</li>
-<li>hexo deploy</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1739,7 +1723,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
